@@ -1,33 +1,44 @@
-## Functions solve for the inverse of a matrix. Initially, the function checks to see if the inverse has already been
-## calculated and retuns that value to speed up calcuations. If not, the inverse is calculated and cached.
+## Functions solve for the inverse of a matrix and cached the results to speed up calculations
 
-## Function retrieves and sets inverse matrix calcuations for caching
-
+## Function retrieves matrix and caches inverse matrix calcuations
 makeCacheMatrix <- function(x = matrix()) {
+        # Function is initialized with minv variable and set function is set up to 
         minv <- NULL
         set <- function(y) {
                 x <<- y
                 minv <<- NULL
         }
+        
+        # Getter for matrix 'x'
         get <- function() x
+        
+        # Setter for caching inverse matrix
         setmatinv <- function(solve) minv <<- solve
+        
+        # Getter for cached inverse cached matrix
         getmatinv <- function() minv
+        
         list(set = set, get = get,
              setmatinv = setmatinv,
              getmatinv = getmatinv)
 }
 
-## Function solves for the inverse of a matrix. Function initially looks if inverse has been calculated previously 
-## and returns cached value if TRUE
+## Function solves for the inverse of a matrix. Function initially looks if inverse has been calculated previously and returns 
+## cached value if TRUE. Otherwise, function calculates inverse of matrix, caches result, and then returns inverse of matrix
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        ## Function creates variable with results from get function in makeCacheMaterix. If value is not null, then the cached 
+        ## inverse matrix has been calculated and the value is returned
         minv <- x$getmatinv()
         if(!is.null(minv)) {
-                message("inverse calculated, retrieving cached inverse calcuation")
                 return(minv)
         }
-        data <- x$get()
-        minv <- solve(data, ...)
+        
+        ## Function assigns variable by getting the matrix inputted in makeCacheMatrix and then uses the solve function to 
+        ## find inverse matrix.
+        mCMget <- x$get()
+        minv <- solve(mCMget)
+        
+        ## Function sets inverse matrix in makeCacheMatrix so it can be cached in the future and inverse matrix is returned
         x$setmatinv(minv)
         minv
 }
