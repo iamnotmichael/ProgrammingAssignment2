@@ -1,5 +1,5 @@
-## Functions solve for the inverse of a matrix. Initially, the function checks to see if the inverse has already been calculated
-## and retuns that value to speed up calcuations. If not, the inverse is calculated and cached.
+## Functions solve for the inverse of a matrix. Initially, the function checks to see if the inverse has already been
+## calculated and retuns that value to speed up calcuations. If not, the inverse is calculated and cached.
 
 ## Function retrieves and sets inverse matrix calcuations for caching
 
@@ -17,8 +17,8 @@ makeCacheMatrix <- function(x = matrix()) {
              getmatinv = getmatinv)
 }
 
-## Function solves for the inverse of a matrix. Function initially looks if inverse has been calculated previously and returns cached value if TRUE
-
+## Function solves for the inverse of a matrix. Function initially looks if inverse has been calculated previously 
+## and returns cached value if TRUE
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         minv <- x$getmatinv()
