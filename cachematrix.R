@@ -30,6 +30,7 @@ cacheSolve <- function(x, ...) {
         ## inverse matrix has been calculated and the value is returned
         minv <- x$getmatinv()
         if(!is.null(minv)) {
+                message("Inverse Matrix calculated, retrieving cached inverse calcuation")
                 return(minv)
         }
         
